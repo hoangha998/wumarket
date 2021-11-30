@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section id="items-listing">
+	<div class="item">
+		<div class="item-seller">
+			<img src={{ url_for("private", filename="images/user.jpg") }}>
+			<div class="seller-info">
+				<h5> Eric Cartman </h5>
+				<p> Student </p>
+			</div>
+		</div>
+		<h3> Playstation 5 Brand New </h3>
+		<img src={{ url_for("private", filename="images/product.jpg") }}>
+		<div class="item-actions">
+			<div name="message-action"> Send Message </div>
+			<div name="favorite-action"> Favorite </div>
+		</div>
+		<div class="item-description">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		</div>
+	</div>
+
+	{% for item in items %}
+		{% set seller = db.Users.find_one(item.seller_id) %}
+		<div class="item">
+			<div class="item-seller">
+				<img src={{ url_for("private", filename="images/user.jpg") }}>
+				<div class="seller-info">
+					<h5> {{ seller.firstName + " " + seller.lastName }} </h5>
+					<p> {{ seller.title }} </p>
+				</div>
+			</div>
+			<h3> {{ item.title }} </h3>
+			<img src={{ item.image_link }}>
+			<div class="item-actions">
+				<div name="message-action"> Send Message </div>
+				<div name="favorite-action"> Favorite </div>
+			</div>
+			<div class="item-description">
+				{{ item.description }}
+			</div>
+		</div>
+	{% endfor %}
+</section>
+
+{% endblock %}
+

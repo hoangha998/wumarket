@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Wash U </title>
+	<link rel="stylesheet" type="text/css" href="static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="static/css/forms.css">
+</head>
+<body>
+
+	<nav>
+		<ul>
+			<li> <a href="{{ url_for("add_product") }}"> Add Product </a> </li>
+			<li> <a href=""> Chats </a> </li>
+			<li> <a href=""> Profile </a> </li>
+			<li> <a href=""> My Products </a> </li>
+			<li> <a href=""> Favorites </a> </li>
+			{% if current_user.is_anonymous() %}
+				<li> <a href="{{ url_for("login") }}"> Sign In </a> </li>
+			{% else %}
+				<li> <a href="{{ url_for("logout") }}"> Log out </a>  </li>
+			{% endif %}
+		</ul>
+	</nav>
+
+	{% block content %}
+
+	{% endblock %}
+
+
+</body>
+</html>
