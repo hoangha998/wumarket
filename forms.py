@@ -21,3 +21,8 @@ class NewProductForm(FlaskForm):
     image_link = StringField(validators=[DataRequired()])
     description = TextAreaField(validators=[DataRequired()])
     submit = SubmitField(label="Add Project")
+    
+class ValidateForm(FlaskForm):
+		email = EmailField(validators=[DataRequired()])
+		token = StringField(validators=[DataRequired()])
+		submit = SubmitField(label="Validate")

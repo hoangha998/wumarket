@@ -27,7 +27,8 @@ class CustomJSONEncoder(json.JSONEncoder):
         return super(MyEncoder, self).default(obj)
 
 class Permission:
-	guest = 1
+	guest = 0
+	verified = 1
 	mod = 2
 	admin = 3
 
@@ -43,6 +44,7 @@ class User(UserMixin):
 		self.score = user_info['score']
 		self.vote_counts = user_info['vote_counts']
 		self.favorites = user_info['favorites']
+		self.token = user_info['token']
 
 	def __repr__(self):
 		return '<User {} {}>'.format(self.firstName, self.lastName)
