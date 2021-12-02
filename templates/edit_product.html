@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title> Wash U </title>
-	<link rel="stylesheet" type="text/css" href="static/css/main.css">
-	<link rel="stylesheet" type="text/css" href="static/css/forms.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/forms.css">
 </head>
 <body>
 
@@ -22,10 +23,21 @@
 		</ul>
 	</nav>
 
-	{% block content %}
-
-	{% endblock %}
-
+	<form class="basic-form" method="POST">
+		<label> Title
+			{{ form.title() }}
+		</label>
+		<label> Price
+			{{ form.price() }}
+		</label>
+		<label> Image Link
+			{{ form.image_link() }}
+		</label>
+		<label> Description
+			{{ form.description() }}
+		</label>
+		{{ form.submit }}
+	</form>
 
 </body>
 </html>

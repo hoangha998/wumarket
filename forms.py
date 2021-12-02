@@ -26,3 +26,10 @@ class ValidateForm(FlaskForm):
 		email = EmailField(validators=[DataRequired()])
 		token = StringField(validators=[DataRequired()])
 		submit = SubmitField(label="Validate")
+  
+class editProductForm(FlaskForm):
+		title = StringField(validators=[DataRequired()])
+		price = DecimalField(validators=[DataRequired()])
+		image_link = StringField(validators=[DataRequired()])
+		description = TextAreaField(validators=[DataRequired()])
+		submit = SubmitField(label="Update")

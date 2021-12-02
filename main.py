@@ -7,8 +7,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # from flask_pymongo import PyMongo
 from pymongo import MongoClient
 from flask_login import LoginManager, current_user, login_user, logout_user
-from forms import NewProductForm, LoginForm, SignUpForm, ValidateForm
-from models import User, AnonymousUser, permission_required, admin_required, CustomJSONEncoder, login_required
+from forms import NewProductForm, LoginForm, SignUpForm, ValidateForm, editProductForm
+from models import User, AnonymousUser, permission_required, admin_required, CustomJSONEncoder, login_required, Product
 from bson.json_util import ObjectId
 from flask_mail import Mail, Message
 
@@ -60,6 +60,14 @@ def index():
   print("curren user:", current_user)
   products = db.Products.find(None)
   return render_template('main.html', items=products, db=db)
+
+
+@app.route('/my_products', methods=['GET'])
+@login_required
+def my_products():
+  products = db.Products.find({"seller_id": ObjectId(current_user.id)})
+  return render_template('my_products.html', items=products, db=db)
+  
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -185,6 +193,37 @@ def test():
   print(prod)
   return "testing"
 
+@app.route('/delete_product/<item_id>')
+def delete_product(item_id):
+  print("received: ", item_id)
+  item_id = ObjectId(item_id)
+  db.Products.delete_one({'_id': item_id})
+  return redirect(url_for('my_products'))
+
+@app.route('/edit_product/<item_id>', methods=['GET', 'POST'])
+def edit_product(item_id):
+  form = editProductForm()
+  item_id = ObjectId(item_id)
+  product = db.Products.find_one({"_id": item_id})
+  if request.method == "POST":
+    print("form submitted")
+    updated_data = {
+    'title': request.form['title'],
+    'price': request.form['price'],
+    'image_link': request.form['image_link'], 
+    'description': request.form['description'],
+    }
+    db.Products.update_one({'_id': item_id}, {'$set': updated_data})
+    return redirect(url_for('my_products'))
+  else:
+    product = Product(product)
+    form.title.data = product.title
+    form.price.data = product.price
+    form.image_link.data = product.image_link
+    form.description.data = product.description
+    return render_template('edit_product.html', form=form)
+  
+
 @app.route('/private/<path:filename>')
 def private(filename):
   file_folder = os.path.join(os.getcwd(), 'private')
@@ -203,4 +242,4 @@ def private(filename):
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)

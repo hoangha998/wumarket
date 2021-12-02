@@ -18,8 +18,7 @@ class Tags():
 				'miscellaneous': 0
 			}
 		else:
-			self.tags = tags_dictg
-
+			self.tags = tags_dict
 class CustomJSONEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, ObjectId):
@@ -32,6 +31,17 @@ class Permission:
 	mod = 2
 	admin = 3
 
+class Product():
+  def __init__(self, product_info):
+    self.id = product_info['_id']
+    self.title = product_info['title']
+    self.price = float(product_info['price'])
+    self.image_link = product_info['image_link']
+    self.description = product_info['description']
+    self.tags = product_info['tags']
+    self.seller_id = product_info['seller_id']
+    self.sold = product_info['sold']
+    self.post_date = product_info['post_date']
 class User(UserMixin):
 
 	def __init__(self, user_info):
