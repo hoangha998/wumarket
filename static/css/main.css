@@ -67,7 +67,9 @@ nav li a:hover {
 	margin-left: 10px;
 	border: 2px solid darkorange;
 }
-
+#seller-profile {
+	height: 100px
+}
 .seller-info {
 	/*border: 1px solid blue;*/
 	height: 50px;

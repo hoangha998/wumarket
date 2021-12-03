@@ -55,6 +55,9 @@ class User(UserMixin):
 		self.vote_counts = user_info['vote_counts']
 		self.favorites = user_info['favorites']
 		self.token = user_info['token']
+		self.img_link = user_info['img_link']
+		self.bio = user_info['bio']
+		self.title = user_info['title']
 
 	def __repr__(self):
 		return '<User {} {}>'.format(self.firstName, self.lastName)

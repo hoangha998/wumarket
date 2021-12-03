@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,20 +24,20 @@
 	</nav>
 
 	<form class="basic-form" method="POST">
-		<label> Title
-			{{ form.title() }}
+		<label> First Name
+			{{ form.firstName() }}
 		</label>
-		<label> Price
-			{{ form.price() }}
+		<label> Last Name
+			{{ form.lastName() }}
 		</label>
 		<label> Image Link
-			{{ form.image_link() }}
+			{{ form.img_link() }}
 		</label>
-		<label> Description
-			{{ form.description() }}
+		<label> Bio
+			{{ form.bio() }}
 		</label>
-		<label> Mark this product as sold?
-			{{ form.sold() }}
+    <label> Title
+			{{ form.title() }}
 		</label>
 		{{ form.submit }}
 	</form>
