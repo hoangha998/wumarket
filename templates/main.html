@@ -42,7 +42,7 @@
 			<img src={{ item.image_link }}>
 			<div class="item-actions">
 				<div name="message-action"> Send Message </div>
-				<div class="favorite-button" name="favorite-action"> Favorite </div>
+				<div class="favorite-button {{item._id in current_user.favorites}}" name="favorite-action"> Favorite </div>
 			</div>
 			<div class="item-description">
 				{{ item.description }}

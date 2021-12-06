@@ -59,7 +59,7 @@ db = client['WUmarket']
 def index():
   print("curren user:", current_user)
   products = db.Products.find(None)
-  return render_template('main.html', items=products, db=db)
+  return render_template('main.html', items=products, current_user=current_user, db=db)
 
 
 @app.route('/my_products', methods=['GET'])
@@ -138,7 +138,8 @@ def signup():
       return "<h1> Email already used </h1>", 400
     new_user_id = users.insert_one(new_user).inserted_id
     msg = Message("Verify your WashU email", recipients=[email])
-    msg.body = "Your verification code is: " + token + " Visit" +  url_for('validate') + "to validate"
+    base_url = request.url_root[:-1]
+    msg.body = "Your verification code is: " + token + "\nVisit" +  base_url + url_for('validate') + " to validate."
     mail.send(msg)
     print("create new user with id", new_user_id)
     return redirect(url_for('validate')) 
