@@ -26,7 +26,7 @@ class Config:
 	RESUME_LINK = os.environ.get("RESUME_LINK")
 	MAIL_DEFAULT_SENDER = 'wumarket889@gmail.com'
 	TESTING = False
-	
+
 mail = Mail()
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -64,7 +64,6 @@ db = client['WUmarket']
 @app.route('/', methods=['GET'])
 @login_required
 def index():
-	print("curren user:", current_user)
 	products = db.Products.find(None)
 	return render_template('main.html', items=products, current_user=current_user, db=db)
 

@@ -3,26 +3,6 @@
 {% block content %}
 
 <section id="items-listing">
-	<div class="item">
-		<div class="item-seller">
-			<img src={{ url_for("private", filename="images/user.jpg") }}>
-			<div class="seller-info">
-				<h5> Eric Cartman </h5>
-				<p> Student </p>
-			</div>
-		</div>
-		<h3> Playstation 5 Brand New </h3>
-		<img src={{ url_for("private", filename="images/product.jpg") }}>
-		<div class="item-actions">
-			<div name="message-action"> Send Message </div>
-			<div name="favorite-action"> Favorite </div>
-		</div>
-		<div class="item-description">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		</div>
-	</div>
 
 	{% for item in items %}
 		{% set seller = db.Users.find_one(item.seller_id) %}
@@ -36,12 +16,12 @@
 			</div>
 			<h3> {{ item.title }} </h3>
 			{% if item.sold %}
-			<h5> This item has sold </h5>
+			<h4> This item has sold </h5>
 			{%endif%}
-			<h5> ${{ item.price }} </h5>
+			<h4 class="item-price"> ${{ item.price }} </h5>
 			<img src={{ item.image_link }}>
 			<div class="item-actions">
-				<div name="message-action"> Send Message </div>
+				<div class="message-button"> Send Message </div>
 				<div class="favorite-button {{item._id in current_user.favorites}}" name="favorite-action"> Favorite </div>
 			</div>
 			<div class="item-description">
@@ -51,18 +31,10 @@
 	{% endfor %}
 </section>
 
-<script>
-  const favoriteButtons = document.getElementsByClassName("favorite-button")
-  for (let i=0; i<favoriteButtons.length; i++) {
-    favoriteButtons[i].addEventListener('click', () => {
-      console.log('clicked:' + favoriteButtons[i].parentNode.parentNode.id)
-      toFavorite(favoriteButtons[i].parentNode.parentNode.id)
-    })
-  }
-  function toFavorite(id) {
-    window.location.pathname = "/add_favorite" + "/" + id
-}
-</script>
+{% endblock %}
+
+{% block scripts %}
+	<script type="text/javascript" src="static/js/product_actions.js"></script>
 {% endblock %}
 
 
