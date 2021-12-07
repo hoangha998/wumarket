@@ -1,8 +1,17 @@
+<<<<<<< HEAD
 
 	{% block links %}
 	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/forms.css">
 	{% endblock %}
+=======
+{% extends "base.html" %}
+
+{% block links %}
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/forms.css">
+{% endblock %}
+>>>>>>> e0dae6532365561a984932263921832007c9fa05
 
 
 {% block content %}
@@ -36,10 +45,6 @@
 			{%endif%}
 			<h5> ${{ item.price }} </h5>
 			<img src={{ item.image_link }}>
-			<div class="item-actions">
-				<div name="message-action"> Send Message </div>
-				<div name="favorite-action"> Favorite </div>
-			</div>
 			<div class="item-description">
 				{{ item.description }}
 			</div>

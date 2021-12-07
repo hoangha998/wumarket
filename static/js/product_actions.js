@@ -11,15 +11,26 @@ function toFavorite(id) {
 
 
 
-// 
+
 // let sendMessageButtons = document.getElementsByClassName("message-button");
 // for (let i=0; i < sendMessageButtons.length; i++) {
-// 	let curButton = sendMessageButtons[i];
-// 	console.log("adding event listener for ");
-// 	console.log(i);
+// 	curButton = sendMessageButtons[i];
 // 	curButton.addEventListener("click", function() {
-// 		console.log(curButton.getAttribute('seller_id'));
+// 		let curItem = curButton;
+// 		while( !curItem.classList.contains("item") )
+// 			curItem = curItem.parentElement
 // 		console.log("send message of item was clicked");
-// 		// console.log(curItem.id);
+// 		console.log(curItem.id);
 // 	})
 // }
+
+const editButtons = document.getElementsByClassName("edit-button");
+for (let i=0; i<editButtons.length; i++) {
+	editButtons[i].addEventListener('click', () => {
+		console.log('clicked:' + editButtons[i].parentNode.parentNode.id)
+		toEdit(editButtons[i].parentNode.parentNode.id)
+})
+}
+function toEdit(id) {
+	window.location.pathname = "/edit_product" + "/" + id
+}
