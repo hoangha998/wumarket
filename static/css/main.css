@@ -67,7 +67,9 @@ nav li a:hover {
 	margin-left: 10px;
 	border: 2px solid darkorange;
 }
-
+#seller-profile {
+	height: 100px
+}
 .seller-info {
 	/*border: 1px solid blue;*/
 	height: 50px;
@@ -104,6 +106,17 @@ nav li a:hover {
 	padding: 8px;
 }
 
+.item-actions .True {
+	background-color: orange;
+}
+
+.item-actions > *:hover {
+	background-color: white;
+	cursor: pointer;
+	background-color: orange;
+	transition-duration: 0.3s;
+	color: black;
+}
 .item-actions > *:hover {
 	background-color: white;
 	cursor: pointer;

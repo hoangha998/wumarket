@@ -18,8 +18,7 @@ class Tags():
 				'miscellaneous': 0
 			}
 		else:
-			self.tags = tags_dictg
-
+			self.tags = tags_dict
 class CustomJSONEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, ObjectId):
@@ -27,10 +26,22 @@ class CustomJSONEncoder(json.JSONEncoder):
         return super(MyEncoder, self).default(obj)
 
 class Permission:
-	guest = 1
+	guest = 0
+	verified = 1
 	mod = 2
 	admin = 3
 
+class Product():
+  def __init__(self, product_info):
+    self.id = product_info['_id']
+    self.title = product_info['title']
+    self.price = float(product_info['price'])
+    self.image_link = product_info['image_link']
+    self.description = product_info['description']
+    self.tags = product_info['tags']
+    self.seller_id = product_info['seller_id']
+    self.sold = product_info['sold']
+    self.post_date = product_info['post_date']
 class User(UserMixin):
 
 	def __init__(self, user_info):
@@ -43,6 +54,10 @@ class User(UserMixin):
 		self.score = user_info['score']
 		self.vote_counts = user_info['vote_counts']
 		self.favorites = user_info['favorites']
+		self.token = user_info['token']
+		self.img_link = user_info['img_link']
+		self.bio = user_info['bio']
+		self.title = user_info['title']
 
 	def __repr__(self):
 		return '<User {} {}>'.format(self.firstName, self.lastName)

@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Wash U </title>
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/forms.css">
+</head>
+<body>
+
+	<nav>
+		<ul>
+			<li> <a href="{{ url_for("index") }}"> Home </a> </li>
+			<li> <a href="{{ url_for("add_product") }}"> Add Product </a> </li>
+			<li> <a href=""> Chats </a> </li>
+			<li> <a href=""> Profile </a> </li>
+			<li> <a href="{{ url_for("my_products") }}"> My Products </a> </li>
+			<li> <a href=""> Favorites </a> </li>
+			{% if current_user.is_anonymous() %}
+				<li> <a href="{{ url_for("login") }}"> Sign In </a> </li>
+			{% else %}
+				<li> <a href="{{ url_for("logout") }}"> Log out </a>  </li>
+			{% endif %}
+		</ul>
+	</nav>
+
+	<form class="basic-form" method="POST">
+		<label> Title
+			{{ form.title() }}
+		</label>
+		<label> Price
+			{{ form.price() }}
+		</label>
+		<label> Image Link
+			{{ form.image_link() }}
+		</label>
+		<label> Description
+			{{ form.description() }}
+		</label>
+		<label> Mark this product as sold?
+			{{ form.sold() }}
+		</label>
+		{{ form.submit }}
+	</form>
+
+</body>
+</html>

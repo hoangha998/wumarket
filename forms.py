@@ -4,6 +4,7 @@ from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, Email
 
 
+
 class LoginForm(FlaskForm):
 	email = EmailField(validators=[DataRequired()])
 	password = PasswordField(validators=[DataRequired()])
@@ -22,3 +23,23 @@ class NewProductForm(FlaskForm):
     image_link = StringField(validators=[DataRequired()])
     description = TextAreaField(validators=[DataRequired()])
     submit = SubmitField(label="Add Project")
+    
+class ValidateForm(FlaskForm):
+		email = EmailField(validators=[DataRequired()])
+		token = StringField(validators=[DataRequired()])
+		submit = SubmitField(label="Validate")
+
+class editProductForm(FlaskForm):
+		title = StringField(validators=[DataRequired()])
+		price = DecimalField(validators=[DataRequired()])
+		image_link = StringField(validators=[DataRequired()])
+		description = TextAreaField(validators=[DataRequired()])
+		sold = SelectField(choices=[('True', 'Yes'), ('False', 'No')], validators=[InputRequired()])
+		submit = SubmitField(label="Update")  
+class editProfileForm(FlaskForm):
+		firstName = StringField(validators=[DataRequired()])
+		lastName = StringField(validators=[DataRequired()])
+		img_link = StringField(validators=[DataRequired()])
+		bio = TextAreaField(validators=[DataRequired()])
+		title = StringField(validators=[DataRequired()])
+		submit = SubmitField(label="Update")
