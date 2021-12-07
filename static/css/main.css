@@ -133,3 +133,12 @@ nav li a:hover {
 	transition-duration: 0.3s;
 	color: black;
 }
+
+.no-decor {
+	text-decoration: none;
+	color: black;
+}
+
+.no-decor::after {
+	color: black;
+}

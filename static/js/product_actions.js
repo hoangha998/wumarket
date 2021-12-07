@@ -11,15 +11,15 @@ function toFavorite(id) {
 
 
 
-
-let sendMessageButtons = document.getElementsByClassName("message-button");
-for (let i=0; i < sendMessageButtons.length; i++) {
-	curButton = sendMessageButtons[i];
-	curButton.addEventListener("click", function() {
-		let curItem = curButton;
-		while( !curItem.classList.contains("item") )
-			curItem = curItem.parentElement
-		console.log("send message of item was clicked");
-		console.log(curItem.id);
-	})
-}
+// 
+// let sendMessageButtons = document.getElementsByClassName("message-button");
+// for (let i=0; i < sendMessageButtons.length; i++) {
+// 	let curButton = sendMessageButtons[i];
+// 	console.log("adding event listener for ");
+// 	console.log(i);
+// 	curButton.addEventListener("click", function() {
+// 		console.log(curButton.getAttribute('seller_id'));
+// 		console.log("send message of item was clicked");
+// 		// console.log(curItem.id);
+// 	})
+// }
