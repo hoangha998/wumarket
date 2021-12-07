@@ -23,3 +23,14 @@ for (let i=0; i < sendMessageButtons.length; i++) {
 		console.log(curItem.id);
 	})
 }
+
+const editButtons = document.getElementsByClassName("edit-button");
+for (let i=0; i<editButtons.length; i++) {
+	editButtons[i].addEventListener('click', () => {
+		console.log('clicked:' + editButtons[i].parentNode.parentNode.id)
+		toEdit(editButtons[i].parentNode.parentNode.id)
+})
+}
+function toEdit(id) {
+	window.location.pathname = "/edit_product" + "/" + id
+}
