@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField, PasswordField, DecimalField
-from wtforms.fields.html5 import EmailField
+from wtforms import StringField, TextAreaField, SubmitField, PasswordField, DecimalField, EmailField, SelectField
+# from wtforms.fields.html5 import , EmailField
 from wtforms.validators import DataRequired, Email
 
 
@@ -34,7 +34,7 @@ class editProductForm(FlaskForm):
 		price = DecimalField(validators=[DataRequired()])
 		image_link = StringField(validators=[DataRequired()])
 		description = TextAreaField(validators=[DataRequired()])
-		sold = SelectField(choices=[('True', 'Yes'), ('False', 'No')], validators=[InputRequired()])
+		sold = SelectField(choices=[('True', 'Yes'), ('False', 'No')], validators=[DataRequired()])
 		submit = SubmitField(label="Update")  
 class editProfileForm(FlaskForm):
 		firstName = StringField(validators=[DataRequired()])
