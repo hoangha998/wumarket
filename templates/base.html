@@ -4,16 +4,22 @@
 	<title> Wash U </title>
 	<link rel="stylesheet" type="text/css" href="static/css/main.css">
 	<link rel="stylesheet" type="text/css" href="static/css/forms.css">
+	{% block links %}
+
+	{% endblock %}
 </head>
 <body>
 
 	<nav>
 		<ul>
+
 			<li> <a href="{{ url_for("index") }}"> Home </a> </li>
-			<li> <a href="{{ url_for("add_product") }}"> Add Product </a> </li>
-			<li> <a href=""> Chats </a> </li>
+			<li> <a href="{{ url_for('add_product') }}"> Add Product </a> </li>
+			<li> <a href="{{ url_for('chats') }}"> Chats </a> </li>
+      <li> <a href=""> Profile </a> </li>
 			<li> <a href="{{ url_for("my_products") }}"> My Products </a> </li>
 			<li> <a href=" {{url_for("favorites") }}"> Favorites </a> </li>
+
 			{% if current_user.is_anonymous() %}
 				<li> <a href="{{ url_for("login") }}"> Sign In </a> </li>
 			{% else %}
@@ -27,6 +33,7 @@
 
 	{% endblock %}
 
-
+	{% block scripts %}
+	{% endblock %}
 </body>
 </html>
